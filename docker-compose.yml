@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:11.1
+    ports:
+      - 5432:5432
+    networks:
+      - rails_network
+    volumes:
+      - rails_postgres_data:/data/db
+  rails_app:
+    container_name: rails_app
+    image: rails-app:1.0.0
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+    environment:
+      - POSTGRE_USERNAME=postgres
+      - POSTGRE_HOST=postgres
+    networks:
+      - rails_network
+
+networks:
+  rails_network:
+    name: rails_network
+
+volumes:
+  rails_postgres_data:
+    name: rails_postgres_data
