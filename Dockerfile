@@ -1,4 +1,6 @@
 FROM ruby:2.6.5
+MAINTAINER mr.andymarthin@gmail.com
+
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 # Add NodeJS to sources list
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
@@ -20,5 +22,7 @@ RUN bundle install
 COPY . /application
 RUN yarn install
 
+EXPOSE 3000
 
 CMD ["rails", "server", "-b", "0.0.0.0"]
+

@@ -12,7 +12,7 @@ services:
       - rails_postgres_data:/data/db
   rails_app:
     container_name: rails_app
-    image: rails-app:1.0.0
+    image: rails-app:1.0.1
     ports:
       - 3000:3000
     depends_on:

@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-service
+spec:
+  selector:
+    app: rails
+    tier: database
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-rails
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rails
+      tier: database
+  template:
+    metadata:
+      labels:
+        app: rails
+        tier: database
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:11.1
+          ports:
+            - containerPort: 5432
+      volumes:
+        - name: volume-database-rails
+          persistentVolumeClaim:
+              claimName: pvc-rails
