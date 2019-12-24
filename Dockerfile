@@ -1,5 +1,6 @@
 FROM ruby:2.6.5
 MAINTAINER mr.andymarthin@gmail.com
+LABEL version="1.0.2"
 
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 # Add NodeJS to sources list
