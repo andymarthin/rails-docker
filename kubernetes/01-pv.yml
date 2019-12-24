@@ -2,15 +2,13 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-rails
-  labels:
-    type: local
 spec:
-  capacity:
-    storage: 1Gi
   accessModes:
     - ReadWriteOnce
+  capacity:
+    storage: 2Gi
   hostPath:
-    path: "/Users/marthin/Research/rails-docker/data"
+    path: /tmp/rails-pv
 
 ---
 

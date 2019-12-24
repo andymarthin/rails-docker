@@ -33,6 +33,11 @@ spec:
           image: postgres:11.1
           ports:
             - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: "rails_docker"
+            - name: POSTGRES_PASSWORD
+              value: "rails_docker_password"
       volumes:
         - name: volume-database-rails
           persistentVolumeClaim:

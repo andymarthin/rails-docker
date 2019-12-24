@@ -10,9 +10,12 @@ services:
       - rails_network
     volumes:
       - rails_postgres_data:/data/db
+    environment:
+      - POSTGRES_USER=rails_docker
+      - POSTGRES_PASSWORD=rails_docker_password
   rails_app:
     container_name: rails_app
-    image: rails-app:1.0.1
+    image: rails-app:1.0.3
     ports:
       - 3000:3000
     depends_on:
@@ -20,6 +23,7 @@ services:
     environment:
       - POSTGRE_USERNAME=postgres
       - POSTGRE_HOST=postgres
+      - RAILS_DOCKER_DATABASE_PASSWORD=rails_docker_password
     networks:
       - rails_network
 

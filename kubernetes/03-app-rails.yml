@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: app-rails
-        image: andymarthin/rails-app:1.0.1
+        image: andymarthin/rails-app:1.0.3
         ports:
         - containerPort: 3000
         env:
@@ -39,3 +39,5 @@ spec:
           value: "postgres"
         - name: "POSTGRE_HOST"
           value: "db-service"
+        - name: "RAILS_DOCKER_DATABASE_PASSWORD"
+          value: "rails_docker_password"

@@ -1,6 +1,8 @@
 FROM ruby:2.6.5
-MAINTAINER mr.andymarthin@gmail.com
-LABEL version="1.0.2"
+
+ENV RAILS_ENV production
+
+LABEL version="1.0.3"
 
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 # Add NodeJS to sources list
@@ -14,14 +16,15 @@ RUN apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -yq --n
 RUN mkdir /application
 WORKDIR /application
 
-COPY Gemfile /application/Gemfile
-COPY Gemfile.lock /application/Gemfile.lock
-COPY package.json /application/package.json
-COPY yarn.lock /application/yarn.lock
+COPY Gemfile* /application/
+COPY package.json /application/
+COPY yarn.lock /application/
 
-RUN bundle install
-COPY . /application
+RUN bundle install --without development test
 RUN yarn install
+COPY . /application
+
+RUN RAILS_GROUPS=assets bundle exec rake assets:precompile
 
 EXPOSE 3000
 
