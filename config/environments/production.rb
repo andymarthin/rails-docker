@@ -86,8 +86,6 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
-  config.logger = Logger.new('/proc/1/fd/1')
-
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 

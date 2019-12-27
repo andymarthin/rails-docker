@@ -1,17 +1,19 @@
-FROM ruby:2.6.5
+FROM ruby:2.6.5-alpine
 
 ENV RAILS_ENV production
 
-LABEL version="1.0.3"
+LABEL version="1.0.5"
 
-RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
-# Add NodeJS to sources list
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
-
-# Add Yarn to the sources list
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-  && echo 'deb http://dl.yarnpkg.com/debian/ stable main' > /etc/apt/sources.list.d/yarn.list
-RUN apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends build-essential postgresql-client curl dirmngr apt-transport-https lsb-release ca-certificates nodejs yarn && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && truncate -s 0 /var/log/*log
+# RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
+RUN apk add --no-cache --update build-base \
+                                linux-headers \
+                                git \
+                                postgresql-dev \
+                                nodejs \
+                                tzdata\
+                                yarn\
+                                imagemagick
+# RUN apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends build-essential postgresql-client curl dirmngr apt-transport-https lsb-release ca-certificates nodejs yarn && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && truncate -s 0 /var/log/*log
 
 RUN mkdir /application
 WORKDIR /application

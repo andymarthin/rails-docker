@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: app-rails
-        image: andymarthin/rails-app:1.0.3
+        image: andymarthin/rails-app:1.0.4
         ports:
         - containerPort: 3000
         env:
@@ -41,3 +41,11 @@ spec:
           value: "db-service"
         - name: "RAILS_DOCKER_DATABASE_PASSWORD"
           value: "rails_docker_password"
+        - name: NODE_ENV
+          value: "production"
+        - name: RAILS_SERVE_STATIC_FILES
+          value: "enabled"
+        - name: RAILS_LOG_TO_STDOUT
+          value: "enabled"
+        - name: RACK_ENV
+          value: "production"
