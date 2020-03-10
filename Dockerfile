@@ -22,11 +22,15 @@ COPY Gemfile* /application/
 COPY package.json /application/
 COPY yarn.lock /application/
 
-RUN bundle install --without development test
+RUN gem install bundler -v 2.1.4 && \
+  bundle install --no-cache --without development test && \
+  rm -rf /usr/local/bundle/bundler/gems/*/.git \
+  /usr/local/bundle/cache/
 RUN yarn install
 COPY . /application
 
-RUN RAILS_GROUPS=assets bundle exec rake assets:precompile
+RUN RAILS_ENV=production rails assets:precompile && \
+  rm -rf node_modules tmp/* log/*
 
 EXPOSE 3000
 

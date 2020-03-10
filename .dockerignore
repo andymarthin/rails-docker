@@ -1,0 +1,8 @@
+.ebextensions
+.sass-cache
+Dockerfile
+docker
+spec
+**/log**
+**/.git**
+**/tmp**
