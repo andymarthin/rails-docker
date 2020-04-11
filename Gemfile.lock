@@ -85,7 +85,6 @@ GEM
       ruby-vips (>= 2.0.17, < 3)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
-    json (2.3.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -105,7 +104,7 @@ GEM
     minitest (5.14.0)
     msgpack (1.3.1)
     nio4r (2.5.2)
-    nokogiri (1.10.7)
+    nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     pg (1.2.2)
     public_suffix (4.0.3)
@@ -199,9 +198,6 @@ GEM
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
-    wrest (0.1.1)
-      activesupport (>= 2.3.5)
-      json (>= 1.1.3)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.2.2)
@@ -228,7 +224,6 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
-  wrest
 
 RUBY VERSION
    ruby 2.6.5p114
